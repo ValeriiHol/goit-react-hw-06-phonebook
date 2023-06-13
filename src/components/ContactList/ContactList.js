@@ -1,32 +1,33 @@
-import PropTypes from 'prop-types';
-import css from './ContactList.module.css'
+import css from './ContactList.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteontact } from 'redux/phoneSlise';
 
-function ContactList({ contacts, onDelete }) {
-     return (
-    <ul className={css.list} >
+function ContactList() {
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => {
+    return state.contacts.items.filter(item =>
+      item.name.toLowerCase().trim().includes(state.filter.toLowerCase().trim())
+    );
+  });
+
+  return (
+    <ul className={css.list}>
       {contacts.map(({ id, name, number }) => (
         <li className={css.item} key={id}>
-          <p >
+          <p>
             {name}: {number}
           </p>
-          <button className={css.button_delete} type="button" onClick={() => onDelete(id)}>
-                Delete
-              </button>
+          <button
+            className={css.button_delete}
+            type="button"
+            onClick={() => dispatch(deleteontact(id))}
+          >
+            Delete
+          </button>
         </li>
       ))}
     </ul>
   );
 }
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }),
-  ),
-  onDelete: PropTypes.func.isRequired,
-};
 
 export default ContactList;
