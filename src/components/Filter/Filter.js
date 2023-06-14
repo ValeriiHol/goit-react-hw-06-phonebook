@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { filterContacts } from 'redux/filterSlise';
-import css from './Filter.module.css'
+import css from './Filter.module.css';
 
 function Filter() {
   const dispatch = useDispatch();
@@ -10,17 +10,17 @@ function Filter() {
   };
 
   return (
-     <label className={css.label}>
+    <label className={css.label}>
       Find contacts by name
-      <input className={css.input}
-       name="search"
+      <input
+        className={css.input}
+        name="search"
         type="text"
         value={filter}
         onChange={onChangeFilter}
       />
-    </label> 
-   )
-
+    </label>
+  );
 }
 
 export default Filter;

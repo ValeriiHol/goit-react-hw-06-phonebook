@@ -19,3 +19,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 // npm install @reduxjs/toolkit
 // npm install react-redux
 // npm install @reduxjs/toolkit react-redux  ???
+// npm i redux-persist
